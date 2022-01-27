@@ -323,7 +323,8 @@ public _sr_command_start(pid, argc)
     new id = get_param(arg_id);
 
     if(!is_user_connected(id)) return;
-
+    if(get_member(id, m_iTeam) == TEAM_CT || get_member(id, m_iTeam) == TEAM_TERRORIST)
+    {
     ExecuteHam(Ham_CS_RoundRespawn, id);
 
     if(g_ePlayerInfo[id][m_bSavePoint])
@@ -342,6 +343,7 @@ public _sr_command_start(pid, argc)
     reset_checkpoints(id);
 
     ExecuteForward(g_fwOnStart, g_iReturn, id);
+    }
 }
 public _sr_command_spec()
 {
